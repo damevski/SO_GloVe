@@ -59,9 +59,10 @@ def parse_chats(chatfile, out_fp):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--chatfile', nargs=1, help='Chat in E&C format', required=True)
+    parser.add_argument('-c', '--chatfiles', nargs='+', help='Chats in E&C format', required=True)
     parser.add_argument('-o', '--outfile', nargs=1, help='Output file in GloVe input format', required=True)
     args = parser.parse_args()
 
     with open(args.outfile[0],'w') as out_fp:
-        parse_chats(args.chatfile[0], out_fp)
+        for chatfile in args.chatfiles:
+           parse_chats(chatfile, out_fp)
